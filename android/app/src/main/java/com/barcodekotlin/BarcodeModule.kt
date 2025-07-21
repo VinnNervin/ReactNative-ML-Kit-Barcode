@@ -15,6 +15,10 @@ class BarcodeModule(private val reactContext: ReactApplicationContext) :
 
     @ReactMethod
     fun openScanner() {
-        // Nanti kita isi logic-nya di sini
+    val currentActivity = currentActivity
+    if (currentActivity != null) {
+        val intent = Intent(currentActivity, BarcodeScannerActivity::class.java)
+        currentActivity.startActivity(intent)
     }
+}
 }

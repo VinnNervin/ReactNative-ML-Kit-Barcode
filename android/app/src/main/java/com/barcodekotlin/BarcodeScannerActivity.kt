@@ -19,6 +19,7 @@ class BarcodeScannerActivity : AppCompatActivity() {
         scanner = GmsBarcodeScanning.getClient(this)
 
         // Langsung buka scanner
+//        Log.d("BarcodeScannerActivity", "Scanner started")
         scanner.startScan()
             .addOnSuccessListener { barcode: Barcode ->
                 val resultIntent = Intent().apply {
