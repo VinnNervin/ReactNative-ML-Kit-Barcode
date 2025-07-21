@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.mlkit.vision.barcode.common.Barcode
 import com.google.mlkit.vision.codescanner.GmsBarcodeScanner
+import com.google.mlkit.vision.codescanner.GmsBarcodeScannerOptions
 import com.google.mlkit.vision.codescanner.GmsBarcodeScanning
 
 class BarcodeScannerActivity : AppCompatActivity() {
@@ -15,11 +16,14 @@ class BarcodeScannerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Inisialisasi scanner
-        scanner = GmsBarcodeScanning.getClient(this)
+        // Inisialisasi dengan opsi
+        val options = GmsBarcodeScannerOptions.Builder()
+            .enableAutoZoom() // aktifkan auto zoom
+            .build() // semua format akan dipindai (default)
 
-        // Langsung buka scanner
-//        Log.d("BarcodeScannerActivity", "Scanner started")
+        scanner = GmsBarcodeScanning.getClient(this, options)
+
+        // Mulai scan langsung
         scanner.startScan()
             .addOnSuccessListener { barcode: Barcode ->
                 val resultIntent = Intent().apply {

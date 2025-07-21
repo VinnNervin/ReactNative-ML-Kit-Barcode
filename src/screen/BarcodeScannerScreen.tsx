@@ -1,18 +1,37 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import BarcodeModule from '../native/BarcodeModule';
+import { playSound } from '../utils/soundUtils'; // sesuaikan dengan struktur foldermu
 
-
+const validBarcodes = ['123456789', '987654321', 'ABC123XYZ'];
 
 const BarcodeScannerScreen = () => {
+  const [lastResult, setLastResult] = useState('');
+  const [status, setStatus] = useState<'valid' | 'invalid' | ''>('');
+
   const handleScanPress = async () => {
-  try {
-    const result = await BarcodeModule.openScanner();
-    Alert.alert('Hasil Scan', result || 'Tidak ada hasil');
-  } catch (error) {
-    Alert.alert('Gagal Scan Terjadi kesalahan');
-  }
-};
+    try {
+      const result = await BarcodeModule.openScanner();
+      if (!result) {
+        setLastResult('Tidak ada hasil');
+        setStatus('');
+        return;
+      }
+
+      setLastResult(result);
+
+      if (validBarcodes.includes(result)) {
+        setStatus('valid');
+        playSound('success.mp3');
+      } else {
+        setStatus('invalid');
+        playSound('error.mp3');
+      }
+    } catch (error) {
+      setLastResult('Gagal scan');
+      setStatus('');
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -20,6 +39,24 @@ const BarcodeScannerScreen = () => {
       <TouchableOpacity style={styles.button} onPress={handleScanPress}>
         <Text style={styles.buttonText}>Scan Barcode</Text>
       </TouchableOpacity>
+
+      {lastResult ? (
+        <View style={styles.resultContainer}>
+          <Text style={styles.resultText}>Hasil: {lastResult}</Text>
+          <Text
+            style={[
+              styles.statusText,
+              { color: status === 'valid' ? 'green' : 'red' },
+            ]}
+          >
+            {status === 'valid'
+              ? '✅ Barcode Valid'
+              : status === 'invalid'
+              ? '❌ Barcode Tidak Dikenal'
+              : ''}
+          </Text>
+        </View>
+      ) : null}
     </View>
   );
 };
@@ -48,5 +85,17 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#fff',
     fontSize: 18,
+  },
+  resultContainer: {
+    marginTop: 30,
+    alignItems: 'center',
+  },
+  resultText: {
+    fontSize: 16,
+    marginBottom: 10,
+  },
+  statusText: {
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });
