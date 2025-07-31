@@ -80,8 +80,8 @@ android {
     namespace "com.barcodekotlin"
     defaultConfig {
         applicationId "com.barcodekotlin"
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        minSdk 24
+        targetSdkVersion targetSdkVersion
         versionCode 1
         versionName "1.0"
         ndk {

@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import BarcodeModule from '../native/BarcodeModule';
 import { playSound } from '../utils/soundUtils'; // sesuaikan dengan struktur foldermu
 
-const validBarcodes = ['123456789', '987654321', 'ABC123XYZ'];
+const validBarcodes = ['sku-01', 'sku-1234', 'qu code'];
 
 const BarcodeScannerScreen = () => {
   const [lastResult, setLastResult] = useState('');
