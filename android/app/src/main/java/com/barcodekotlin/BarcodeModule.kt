@@ -2,7 +2,6 @@ package com.barcodekotlin
 
 import android.app.Activity
 import android.content.Intent
-import android.util.Log
 import com.facebook.react.bridge.*
 import com.facebook.react.modules.core.DeviceEventManagerModule
 
@@ -32,31 +31,12 @@ class BarcodeModule(private val reactContext: ReactApplicationContext) :
     }
 
     override fun onActivityResult(activity: Activity, requestCode: Int, resultCode: Int, intent: Intent?) {
-        Log.d("BarcodeModule", "onActivityResult: requestCode=$requestCode, resultCode=$resultCode")
-        
         if (requestCode == REQUEST_CODE && pendingPromise != null) {
             if (resultCode == Activity.RESULT_OK) {
                 val barcode = intent?.getStringExtra("barcode")
-                Log.d("BarcodeModule", "Scan result: $barcode")
                 pendingPromise?.resolve(barcode)
             } else {
-                // Cek apakah ada informasi error spesifik
-                val error = intent?.getStringExtra("error")
-                val errorMessage = intent?.getStringExtra("errorMessage")
-                
-                Log.d("BarcodeModule", "Scan error: $error, message: $errorMessage")
-                
-                when (error) {
-                    "USER_CANCELLED" -> {
-                        pendingPromise?.reject("SCAN_CANCELLED", "User cancelled scanner")
-                    }
-                    "SCAN_FAILED" -> {
-                        pendingPromise?.reject("SCAN_FAILED", "Scanner failed: $errorMessage")
-                    }
-                    else -> {
-                        pendingPromise?.reject("SCAN_CANCELLED", "User cancelled scanner")
-                    }
-                }
+                pendingPromise?.reject("SCAN_CANCELLED", "User cancelled scanner")
             }
             pendingPromise = null
         }
