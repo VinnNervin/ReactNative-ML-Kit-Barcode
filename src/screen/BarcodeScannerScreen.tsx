@@ -27,8 +27,18 @@ const BarcodeScannerScreen = () => {
         setStatus('invalid');
         playSound('error.mp3');
       }
-    } catch (error) {
-      setLastResult('Gagal scan');
+    } catch (error: any) {
+      console.log('Scanner error:', error);
+
+      // Cek jenis error
+      if (error.code === 'SCAN_FAILED') {
+        setLastResult('Error: Gagal memindai barcode');
+        console.log('Scan failed:', error.message);
+      } else if (error.code === 'SCAN_CANCELLED') {
+        setLastResult('Scan dibatalkan');
+      } else {
+        setLastResult('Gagal scan');
+      }
       setStatus('');
     }
   };
