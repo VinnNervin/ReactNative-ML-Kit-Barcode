@@ -28,6 +28,7 @@ const BarcodeScannerScreen = () => {
         playSound('error.mp3');
       }
     } catch (error) {
+      console.log(error);
       setLastResult('Gagal scan');
       setStatus('');
     }
