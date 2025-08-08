@@ -1,9 +1,8 @@
 import React from 'react';
-import BarcodeScannerScreen from './src/screen/BarcodeScannerScreen';
-
+import HomeScreen from './src/screen/HomeScreen';
 
 const App = () => {
-  return <BarcodeScannerScreen />;
+  return <HomeScreen />;
 };
 
 export default App;
