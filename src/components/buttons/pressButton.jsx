@@ -6,9 +6,13 @@ import MaterialIcons from '@react-native-vector-icons/material-icons';
 const PressButton = ({
   title,
   onPress,
-  bgColor = '#5e54e2',
-  bgPressedColor = '#6c5ce7',
+  paddingVertical,
+  paddingHorizontal,
+  bgColor,
+  bgPressedColor,
   icon,
+  textColor,
+  style,
 }) => {
   return (
     <Pressable
@@ -16,10 +20,22 @@ const PressButton = ({
       style={({ pressed }) => [
         styles.actionButton,
         { backgroundColor: pressed ? bgPressedColor : bgColor },
+        style,
       ]}
     >
       {icon && <MaterialIcons name={icon} size={24} color="#fff" />}
-      <Text style={[styles.buttonText]}>{title}</Text>
+      <Text
+        style={[
+          styles.buttonText,
+          {
+            paddingVertical: paddingVertical,
+            paddingHorizontal: paddingHorizontal,
+            color: textColor || '#fff',
+          },
+        ]}
+      >
+        {title}
+      </Text>
     </Pressable>
   );
 };

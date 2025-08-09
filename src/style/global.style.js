@@ -51,7 +51,6 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#fff',
     fontWeight: 'bold',
-    marginTop: 8,
   },
   listContainer: {
     marginTop: 24,
@@ -70,11 +69,7 @@ const styles = StyleSheet.create({
   listItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    // backgroundColor: '#fafafa',
-    // borderRadius: 12,
     padding: 12,
-    // marginBottom: 12,
-    // elevation: 1,
   },
   MaterialIconsBox: {
     width: 40,
@@ -95,12 +90,11 @@ const styles = StyleSheet.create({
 
   historyContainer: {
     // backgroundColor: 'red',
-    height: '60%',
 
   },
   nothing: {
     width: '100%',
-    height: 300,
+    height: 200,
     resizeMode: 'contain',
   }
   ,
@@ -110,6 +104,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 0,
   },
+
+  buttonCancel: {
+    backgroundColor: '#d63031',
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    borderRadius: 8,
+  }
 
 });
 
