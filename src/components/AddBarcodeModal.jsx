@@ -1,12 +1,6 @@
 import React, { useState } from 'react';
-import {
-  Modal,
-  View,
-  Text,
-  TextInput,
-  StyleSheet,
-  Pressable,
-} from 'react-native';
+import { Modal, View, Text, TextInput, StyleSheet } from 'react-native';
+import PressButton from './buttons/pressButton';
 
 function AddBarcodeModal({ visible, onClose, onSubmit }) {
   const [code, setCode] = useState('');
@@ -49,17 +43,22 @@ function AddBarcodeModal({ visible, onClose, onSubmit }) {
             onChangeText={setDescription}
           />
           {alert ? <Text style={styles.alert}>{alert}</Text> : null}
-
           <View style={styles.buttonRow}>
-            <Pressable style={[styles.button, styles.cancel]} onPress={handleClose}>
-              <Text style={styles.buttonText}>Batal</Text>
-            </Pressable>
-            <Pressable
-              style={[styles.button, styles.submit]}
+            <PressButton
+              title="Batal"
+              bgColor="#ffffffff"
+              bgPressedColor="#ffffffff"
+              textColor="#000"
+              onPress={handleClose}
+              style={{ borderWidth: 2, borderColor: '#858585ff' }}
+            />
+            <PressButton
+              title="Simpan"
+              bgColor="#794eefff"
+              bgPressedColor="#633dcdff"
               onPress={handleSubmit}
-            >
-              <Text style={styles.buttonText}>Simpan</Text>
-            </Pressable>
+              style={{ borderWidth: 2, borderColor: 'transparent' }}
+            />
           </View>
         </View>
       </View>
@@ -70,7 +69,7 @@ function AddBarcodeModal({ visible, onClose, onSubmit }) {
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.3)',
+    backgroundColor: 'rgba(0, 0, 0, 0.14)',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -99,26 +98,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 8,
-  },
-  button: {
-    flex: 1,
-    padding: 12,
-    borderRadius: 8,
-    alignItems: 'center',
-    marginHorizontal: 4,
-  },
-
-  buttonText: {
-    // color: '#fff',
-    fontWeight: 'bold',
-  },
-  cancel: {
-    borderColor: '#828282ff',
-    borderWidth: 1,
-  },
-  submit: {
-    backgroundColor: '#794eefff',
-    color: '#fff',
   },
   alert: {
     color: 'red',
