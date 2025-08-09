@@ -1,5 +1,6 @@
 package com.barcodekotlin
 
+import com.barcodekotlin.BarcodePackage
 import android.app.Application
 import com.facebook.react.PackageList
 import com.facebook.react.ReactApplication
@@ -18,6 +19,7 @@ class MainApplication : Application(), ReactApplication {
             PackageList(this).packages.apply {
               // Packages that cannot be autolinked yet can be added manually here, for example:
               // add(MyReactNativePackage())
+               add(BarcodePackage())
             }
 
         override fun getJSMainModuleName(): String = "index"

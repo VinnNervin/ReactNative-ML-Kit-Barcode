@@ -80,10 +80,14 @@ android {
     namespace "com.barcodekotlin"
     defaultConfig {
         applicationId "com.barcodekotlin"
-        minSdkVersion rootProject.ext.minSdkVersion
+        minSdk rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        ndk {
+            abiFilters "armeabi-v7a", "arm64-v8a"
+        }
+        
     }
     signingConfigs {
         debug {
