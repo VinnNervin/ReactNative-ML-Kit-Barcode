@@ -3,6 +3,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#ffffff',
+    overflow: 'scroll',
   },
   header: {
     backgroundColor: '#6c5ce7',
@@ -28,7 +29,7 @@ const styles = StyleSheet.create({
   },
   actionContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     paddingVertical: 20,
     backgroundColor: '#fff',
     elevation: 4,
@@ -39,7 +40,6 @@ const styles = StyleSheet.create({
   actionButton: {
     flex: 1,
     marginHorizontal: 8,
-    backgroundColor: '#888',
     padding: 16,
     borderRadius: 12,
     alignItems: 'center',
@@ -47,9 +47,7 @@ const styles = StyleSheet.create({
   buttonPurple: {
     backgroundColor: '#7f00ff',
   },
-  buttonGreen: {
-    backgroundColor: '#00b894',
-  },
+
   buttonText: {
     color: '#fff',
     fontWeight: 'bold',
@@ -72,16 +70,16 @@ const styles = StyleSheet.create({
   listItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#fafafa',
+    // backgroundColor: '#fafafa',
     // borderRadius: 12,
     padding: 12,
     // marginBottom: 12,
-    elevation: 1,
+    // elevation: 1,
   },
   MaterialIconsBox: {
     width: 40,
     height: 40,
-    borderRadius: 12,
+    borderRadius: 50,
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 12,
@@ -94,6 +92,25 @@ const styles = StyleSheet.create({
     color: '#777',
     fontSize: 14,
   },
+
+  historyContainer: {
+    // backgroundColor: 'red',
+    height: '60%',
+
+  },
+  nothing: {
+    width: '100%',
+    height: 300,
+    resizeMode: 'contain',
+  }
+  ,
+  historyText: {
+    fontSize: 16,
+    color: '#666',
+    textAlign: 'center',
+    marginTop: 0,
+  },
+
 });
 
 export default styles;

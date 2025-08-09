@@ -1,16 +1,32 @@
 import React from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, Image } from 'react-native';
 import MaterialIcons from '@react-native-vector-icons/material-icons';
-import styles from '../style/BarcodeScannerScreen.styles';
-import { getHistory, saveHistory } from '../storage/historyStorage';
+import styles from '../style/global.style';
 
 const HistoryList = ({ history, onDelete }) => {
+
+
   return (
     <View style={[styles.listContainer, { flex: 1 }]}>
       <Text style={styles.listTitle}>Riwayat Barcode</Text>
       <Text style={styles.listSubtitle}>
         Daftar riwayat barcode yang pernah ditambahkan
       </Text>
+
+      {history.length === 0 && (
+        <>
+          <View style={styles.historyContainer}>
+            <Image
+              source={require('../../assets/images/nothing.png')}
+              style={styles.nothing}
+            />
+          </View>
+          <Text style={styles.historyText}>
+            Belum ada riwayat
+          </Text>
+        </>
+      )}
+
       <FlatList
         style={{ flex: 1 }}
         contentContainerStyle={{ paddingBottom: 16 }}
@@ -32,7 +48,7 @@ const HistoryList = ({ history, onDelete }) => {
             </View>
             <View style={{ flex: 1 }}>
               <Text style={styles.itemCode}>{item.code}</Text>
-              <Text style={styles.itemName}>{item.name}</Text>
+              {item.name && <Text style={styles.itemName}>{item.name}</Text>}
               <Text style={{ fontSize: 10, color: '#aaa' }}>
                 {new Date(item.date).toLocaleString()}
               </Text>
@@ -40,7 +56,7 @@ const HistoryList = ({ history, onDelete }) => {
             <MaterialIcons name="delete" size={24} color="red" onPress={() => onDelete(item.code)} />
           </View>
         )}
-        showsVerticalScrollIndicator={false}
+        showsVerticalScrollIndicator={true}
       />
     </View>
   );

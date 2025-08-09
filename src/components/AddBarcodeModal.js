@@ -14,14 +14,14 @@ function AddBarcodeModal({ visible, onClose, onSubmit }) {
   const [alert, setAlert] = useState('');
 
   const handleSubmit = () => {
-    if (code.trim() && description.trim()) {
+    if (code.trim()) {
       onSubmit(code, description);
       setCode('');
       setAlert('');
       setDescription('');
       onClose();
     } else {
-      setAlert('Please fill in both fields.');
+      setAlert('*harap isi kode barcode.');
     }
   };
   const handleClose = () => {
@@ -48,7 +48,7 @@ function AddBarcodeModal({ visible, onClose, onSubmit }) {
             value={description}
             onChangeText={setDescription}
           />
-          {alert ? <Text style={styles.alert}>*{alert}</Text> : null}
+          {alert ? <Text style={styles.alert}>{alert}</Text> : null}
 
           <View style={styles.buttonRow}>
             <Pressable style={[styles.button, styles.cancel]} onPress={handleClose}>

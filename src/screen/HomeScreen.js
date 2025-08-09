@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Pressable, FlatList } from 'react-native';
-import MaterialIcons from '@react-native-vector-icons/material-icons';
-import styles from '../style/BarcodeScannerScreen.styles';
+import { View } from 'react-native';
+import styles from '../style/global.style';
 import AddBarcodeModal from '../components/AddBarcodeModal';
 import { getHistory, saveHistory } from '../storage/historyStorage';
 import HistoryList from '../components/historyList';
+import MainButtons from '../components/MainButtons'
+import Header from '../components/Header';
 
 const HomeScreen = () => {
   const [history, setHistory] = useState([]);
@@ -44,30 +45,9 @@ const HomeScreen = () => {
   return (
     <View style={styles.container}>
       {/* Header */}
-      <View style={styles.header}>
-        <View style={styles.headerContent}>
-          <Text style={styles.headerTitle}>Barcode Scanner</Text>
-          <MaterialIcons name="home" size={24} color="#fff" />
-        </View>
-        <Text style={styles.headerSubtitle}>
-          Kelola dan scan barcode dengan mudah
-        </Text>
-      </View>
-
+      <Header />
       {/* Action Buttons */}
-      <View style={styles.actionContainer}>
-        <Pressable style={[styles.actionButton, styles.buttonPurple]}>
-          <MaterialIcons name="qr-code-scanner" size={24} color="#fff" />
-          <Text style={styles.buttonText}>Scan Barcode</Text>
-        </Pressable>
-        <Pressable
-          style={[styles.actionButton, styles.buttonGreen]}
-          onPress={() => setModalVisible(true)}
-        >
-          <MaterialIcons name="add-circle-outline" size={24} color="#fff" />
-          <Text style={styles.buttonText}>Tambah Data</Text>
-        </Pressable>
-      </View>
+      <MainButtons setModal={() => setModalVisible(true)} />
 
       {/* History List */}
       <HistoryList history={history} onDelete={handleDelete} />
