@@ -9,9 +9,9 @@ const LINKING_ERROR =
 const BarcodeModule = NativeModules.BarcodeModule
   ? NativeModules.BarcodeModule
   : new Proxy({}, {
-      get() {
-        throw new Error(LINKING_ERROR);
-      },
-    });
+    get() {
+      throw new Error(LINKING_ERROR);
+    },
+  });
 
 export default BarcodeModule;
