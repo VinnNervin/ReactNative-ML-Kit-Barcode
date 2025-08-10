@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Button } from 'react-native';
+import { View } from 'react-native';
 import Toast, { toastConfig, showToast } from '../components/CustomToast';
 import styles from '../style/global.style';
 import AddBarcodeModal from '../components/AddBarcodeModal';
@@ -102,10 +102,6 @@ const HomeScreen = () => {
 
       {/* Toast Message */}
       <Toast config={toastConfig} />
-      <Button
-        title="Show Test Toast"
-        onPress={() => showToast('error', 'Berhasil menghapus barcode.')}
-      />
     </View>
   );
 };
