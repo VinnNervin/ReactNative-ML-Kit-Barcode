@@ -1,4 +1,4 @@
-package com.barcodekotlin.barcode
+package com.barcodescanner.barcode
 
 import com.facebook.react.ReactPackage
 import com.facebook.react.bridge.NativeModule

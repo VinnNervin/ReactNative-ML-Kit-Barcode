@@ -1,4 +1,4 @@
-package com.barcodekotlin.barcode
+package com.barcodescanner.barcode
 
 import android.app.Activity
 import android.content.Intent

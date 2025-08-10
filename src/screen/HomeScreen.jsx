@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { View } from 'react-native';
+import { View, Button } from 'react-native';
+import Toast, { toastConfig, showToast } from '../components/CustomToast';
 import styles from '../style/global.style';
 import AddBarcodeModal from '../components/AddBarcodeModal';
 import { getHistory, saveHistory } from '../storage/historyStorage';
@@ -26,9 +27,10 @@ const HomeScreen = () => {
     setHistory(prev => {
       const isDuplicate = prev.some(item => item.code === code);
       if (isDuplicate) {
-        // Bisa tambahkan alert/toast di sini jika ingin
+        showToast('warning', `Barcode ${code} sudah ada.`);
         return prev;
       }
+      showToast('success', `Berhasil menambahkan barcode ${code}.`);
       return [
         ...prev,
         {
@@ -49,9 +51,10 @@ const HomeScreen = () => {
         setHistory(prev => {
           const isDuplicate = prev.some(item => item.code === result);
           if (isDuplicate) {
-            // Bisa tambahkan alert/toast di sini jika ingin
+            showToast('warning', `Barcode ${result} sudah ada.`);
             return prev;
           }
+          showToast('success', `Berhasil scan barcode ${result}.`);
           return [
             ...prev,
             {
@@ -72,6 +75,7 @@ const HomeScreen = () => {
     setHistory(prev => {
       const updated = prev.filter(item => item.code !== code);
       saveHistory(updated);
+      showToast('success', `Berhasil menghapus barcode ${code}.`);
       return updated;
     });
   };
@@ -94,6 +98,13 @@ const HomeScreen = () => {
         visible={modalVisible}
         onClose={() => setModalVisible(false)}
         onSubmit={handleAddBarcode}
+      />
+
+      {/* Toast Message */}
+      <Toast config={toastConfig} />
+      <Button
+        title="Show Test Toast"
+        onPress={() => showToast('error', 'Berhasil menghapus barcode.')}
       />
     </View>
   );

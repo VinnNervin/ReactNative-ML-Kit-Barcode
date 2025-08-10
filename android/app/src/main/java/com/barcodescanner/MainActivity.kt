@@ -1,4 +1,4 @@
-package com.barcodekotlin
+package com.barcodescanner
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
