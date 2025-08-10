@@ -1,6 +1,6 @@
-package com.barcodekotlin
+package com.barcodescanner
 
-import com.barcodekotlin.barcode.BarcodePackage
+import com.barcodescanner.barcode.BarcodePackage
 import android.app.Application
 import com.facebook.react.PackageList
 import com.facebook.react.ReactApplication
